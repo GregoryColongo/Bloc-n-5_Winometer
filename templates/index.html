@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" href ="Styles.css">
+<style type="text/css">
+  
+  h1  { color: rgb(5, 5, 5);
+      font-size: 60px;
+      text-align:center;
+      background-color: #f1c2af
+  }
+
+  h2  { color: rgb(0, 0, 0);
+      font-size: 30px;
+      text-align:center;
+      background-color: #f1c2af
+  }
+
+  h3  { color: rgb(21, 0, 184);
+      text-align:left;
+  }
+ 
+  ol  { font-size: 20px
+  }
+
+  p   { font-size: 20px
+  }
+
+  img {   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border-radius: 50%
+  }
+
+  li   { text-decoration: underline;
+  }
+
+body  {
+  background-color: rgb(173, 198, 217);
+  }
+
+</style>
+
+  <head >
+    <title>Wine O Meter API</title>
+  </head>
+  
+  <body>
+    <div>
+      <h1>Wine O Meter API : find out the quality of wine</h1>
+        <img src="https://www.toutlevin.com/img/5146bd0d459d2576d8a6fbb89238ceea-1920.jpg">
+    </div>  
+    <div>
+      <h2>How doest it work ?</h2>
+        <p>Wine O Meter app allows you to predict the quality score of your wine based on physicochemical inputs. The score goes from 0 to 10.</p>
+    </div>
+    <div>
+      <h2>Description of endpoints</h2>
+        <h3>http://127.0.0.1:5000/predict</h3>
+          <p>This endpoint will be used for the quality wine prediction</p>
+    </div>
+    <div>
+      <h2>HTTP methods</h2>
+        <p>This endpoint accepts POST method with JSON input data and it should return the predictions</p>
+    </div>
+    <div>
+        <h2>Required input and expected output</h2>
+        <p>Please follow these steps (either step 1 for CURL or step 2 for PYTHON): </p>
+        <br>
+        <br>
+          <ol>
+            <li >Call the endpoint with CURL</li>
+              <br>
+              Curl:
+              <br>
+              <br>
+              $ curl -i -H "Content-Type: application/json" -X POST -d '{"input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]}' http://127.0.0.1:5000/predict
+              <br>
+              <br>
+              <br>
+              <li >Call the endpoint with PYTHON</li>
+              <br>
+                Python:
+              <br>
+              <br>
+                import requests
+              <br>
+              <br>
+                response = requests.post("http://127.0.0.1:5000/predict", json={
+                  "input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]
+                })
+              <br>
+              <br>
+                print(response.json())
+              <br>
+              <br>
+              <br>
+              <li >Fill in the 11 values as float type inside a JSON format as below </li>
+              <br>
+                Input example:
+              <br>
+              <br>
+                {
+                "input": [7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]
+                }
+              <br>
+              <br>
+                The response should be a JSON with one key prediction corresponding to the prediction.
+              <br>
+              <br>
+                Response example:
+                  {
+                    "prediction":[6]}
+              <br>
+              <br>
+              <br>
+              <br>
+                !! You can also put multiple inputs in the same request !!
+              <br>
+              <br>
+                  {
+                  "input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8], [7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]
+                  }
+              <br>
+              <br>
+               Response example:
+                  {
+                    "prediction":[6,6]
+                  }
+              <br>
+              <br>
+                  <li >Good tasting and cheers !</li>
+              <br>
+              <br>
+          </ol>
+    </div>
+  </body>
+    <footer>
+      <img src="https://img.passeportsante.net/1200x675/2021-05-03/i102200-vin.webp">
+    </footer>
+</html>
